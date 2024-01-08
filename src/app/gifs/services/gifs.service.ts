@@ -30,6 +30,13 @@ export class GifsService {
     }
     this._tagsHistory.unshift(tag)
     this._tagsHistory = this.tagsHistory.splice(0,10)
+    this.saveLocalStorage();
+  }
+
+  private saveLocalStorage():void{
+
+    localStorage.setItem('history',JSON.stringify (this._tagsHistory));
+
   }
 
   searchTag(tag: string):void {
@@ -46,7 +53,7 @@ export class GifsService {
       console.log(resp);
 
       this.gifsList = resp.data ;
-    })
+    });
 
 
   }
